@@ -125,6 +125,28 @@ function sikorix_ium_add_settings_page() {
 add_action( 'admin_menu', 'sikorix_ium_add_settings_page' );
 
 /**
+ * Add a Settings link on the Plugins screen.
+ *
+ * @param array<string, string> $links Existing plugin action links.
+ * @return array<string, string>
+ */
+function sikorix_ium_add_plugin_action_links( $links ) {
+	$settings_link = sprintf(
+		'<a href="%s">%s</a>',
+		esc_url( admin_url( 'admin.php?page=' . SIKORIX_IUM_PAGE_SLUG ) ),
+		esc_html__( 'Settings', 'sikorix-image-upload-manager' )
+	);
+
+	array_unshift( $links, $settings_link );
+
+	return $links;
+}
+add_filter(
+	'plugin_action_links_' . plugin_basename( SIKORIX_IUM_PLUGIN_FILE ),
+	'sikorix_ium_add_plugin_action_links'
+);
+
+/**
  * Remove the duplicate parent submenu entry WordPress auto-adds.
  */
 function sikorix_ium_remove_parent_submenu_duplicate() {
@@ -167,29 +189,14 @@ add_action( 'admin_enqueue_scripts', 'sikorix_ium_enqueue_admin_assets' );
  */
 function sikorix_ium_get_admin_settings_styles() {
 	return '
-		.sikorix-ium-page-header {
-			display: flex;
-			align-items: baseline;
-			gap: 12px;
-			margin-bottom: 0;
-		}
-		.sikorix-ium-page-header__title,
-		.wrap h1.sikorix-ium-page-header__title {
+		.wrap h1.sikorix-ium-page-title {
 			font-weight: 700;
 			font-size: 23px;
-			line-height: 1.3;
-			margin: 0;
-			padding: 0;
 		}
-		.sikorix-ium-page-header__version {
-			font-size: 14px;
-			line-height: 1.4;
-		}
-		body.sikorix_page_sikorix-image-upload-manager .wrap > .notice {
-			margin: 8px 0 12px;
-		}
-		body.sikorix_page_sikorix-image-upload-manager .wrap > form {
-			margin-top: 12px;
+		.sikorix-ium-page-title__version {
+			font-size: 13px;
+			font-weight: 400;
+			margin-left: 0.4em;
 		}
 		.sikorix-ium-control-label {
 			display: block;
@@ -517,11 +524,10 @@ function sikorix_ium_render_settings_page() {
 	}
 	?>
 	<div class="wrap">
-		<div class="sikorix-ium-page-header">
-			<h1 class="sikorix-ium-page-header__title"><?php esc_html_e( 'Sikorix Image Upload Manager', 'sikorix-image-upload-manager' ); ?></h1>
-			<span class="sikorix-ium-page-header__version"><?php echo esc_html( SIKORIX_IUM_PLUGIN_VERSION ); ?></span>
-		</div>
-		<hr class="wp-header-end" />
+		<h1 class="sikorix-ium-page-title">
+			<?php esc_html_e( 'Sikorix Image Upload Manager', 'sikorix-image-upload-manager' ); ?>
+			<span class="sikorix-ium-page-title__version"><?php echo esc_html( SIKORIX_IUM_PLUGIN_VERSION ); ?></span>
+		</h1>
 
 		<form action="options.php" method="post">
 			<?php
