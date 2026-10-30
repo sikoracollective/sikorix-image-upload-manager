@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sikorix Image Upload Manager
  * Description: Set JPEG and WordPress image editor quality values and filter priorities when WordPress generates images.
- * Version: 3.1.1
+ * Version: 3.1.2
  * Requires at least: 5.0
  * Requires PHP: 7.0
  * Author: Sikorix
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** Plugin version. */
-define( 'SIKORIX_IUM_PLUGIN_VERSION', '3.1.1' );
+define( 'SIKORIX_IUM_PLUGIN_VERSION', '3.1.2' );
 
 /** Absolute path to the main plugin file. */
 define( 'SIKORIX_IUM_PLUGIN_FILE', __FILE__ );
