@@ -55,6 +55,10 @@ No. Only new or re-saved generated images use the new settings.
 
 ## Changelog
 
+### 3.1.3
+
+- Added a Settings link on the Plugins screen.
+
 ### 3.1.2
 
 - Moved settings to **Sikorix → Image Upload Manager**.
@@ -74,24 +78,6 @@ No. Only new or re-saved generated images use the new settings.
 - Synced quality controls (1–100, default 100) and filter priority controls (1–999, default 99).
 - Shows WordPress defaults (quality 82, filter priority 10) and which file types each setting affects.
 - Removes plugin settings from the database on uninstall.
-
-## Upgrade Notice
-
-### 3.1.2
-
-Settings moved under the Sikorix admin menu.
-
-### 3.1.1
-
-Settings screen text and layout refinements.
-
-### 3.1.0
-
-Renamed to Sikorix Image Upload Manager. Install as a new plugin slug; previous settings are not migrated.
-
-### 3.0.0
-
-New settings screen for JPEG and editor quality. Review **Sikorix → Image Upload Manager** after upgrading.
 
 ## License
 

@@ -4,7 +4,7 @@ Tags: images, jpeg, quality, media, upload, webp, avif
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ No. Only new or re-saved generated images use the new settings.
 
 == Changelog ==
 
+= 3.1.3 =
+* Added a Settings link on the Plugins screen.
+
 = 3.1.2 =
 * Moved settings to **Sikorix → Image Upload Manager**.
 
@@ -82,6 +85,9 @@ No. Only new or re-saved generated images use the new settings.
 * Removes plugin settings from the database on uninstall.
 
 == Upgrade Notice ==
+
+= 3.1.3 =
+Adds a Settings link on the Plugins screen.
 
 = 3.1.2 =
 Settings moved under the Sikorix admin menu.
