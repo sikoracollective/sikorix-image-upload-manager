@@ -108,7 +108,7 @@ function sikorix_ium_add_settings_page() {
 			'manage_options',
 			SIKORIX_IUM_PARENT_MENU_SLUG,
 			'sikorix_ium_render_sikorix_menu_fallback',
-			'dashicons-camera',
+			'dashicons-admin-plugins',
 			58
 		);
 	}
