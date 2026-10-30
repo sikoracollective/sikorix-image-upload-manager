@@ -9,6 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Parent menu slug shared by Sikorix plugins. */
+define( 'SIKORIX_IUM_PARENT_MENU_SLUG', 'sikorix' );
+
+/** This plugin's admin page slug. */
+define( 'SIKORIX_IUM_PAGE_SLUG', 'sikorix-image-upload-manager' );
+
+/** Admin screen / hook id for this plugin's settings page. */
+define( 'SIKORIX_IUM_PAGE_HOOK', 'sikorix_page_sikorix-image-upload-manager' );
+
 /**
  * Shared args for registered integer settings.
  *
@@ -87,18 +96,49 @@ function sikorix_ium_register_admin_settings() {
 add_action( 'admin_init', 'sikorix_ium_register_admin_settings' );
 
 /**
- * Add the plugin settings page under Settings.
+ * Add the plugin under the Sikorix admin menu.
  */
 function sikorix_ium_add_settings_page() {
-	add_options_page(
+	global $admin_page_hooks;
+
+	if ( ! isset( $admin_page_hooks[ SIKORIX_IUM_PARENT_MENU_SLUG ] ) ) {
+		add_menu_page(
+			__( 'Sikorix', 'sikorix-image-upload-manager' ),
+			__( 'Sikorix', 'sikorix-image-upload-manager' ),
+			'manage_options',
+			SIKORIX_IUM_PARENT_MENU_SLUG,
+			'sikorix_ium_render_sikorix_menu_fallback',
+			'dashicons-camera',
+			58
+		);
+	}
+
+	add_submenu_page(
+		SIKORIX_IUM_PARENT_MENU_SLUG,
 		__( 'Sikorix Image Upload Manager', 'sikorix-image-upload-manager' ),
-		__( 'Sikorix Image Upload Manager', 'sikorix-image-upload-manager' ),
+		__( 'Image Upload Manager', 'sikorix-image-upload-manager' ),
 		'manage_options',
-		'sikorix-image-upload-manager',
+		SIKORIX_IUM_PAGE_SLUG,
 		'sikorix_ium_render_settings_page'
 	);
 }
 add_action( 'admin_menu', 'sikorix_ium_add_settings_page' );
+
+/**
+ * Remove the duplicate parent submenu entry WordPress auto-adds.
+ */
+function sikorix_ium_remove_parent_submenu_duplicate() {
+	remove_submenu_page( SIKORIX_IUM_PARENT_MENU_SLUG, SIKORIX_IUM_PARENT_MENU_SLUG );
+}
+add_action( 'admin_menu', 'sikorix_ium_remove_parent_submenu_duplicate', 999 );
+
+/**
+ * Redirect the bare Sikorix parent slug to this plugin's settings page.
+ */
+function sikorix_ium_render_sikorix_menu_fallback() {
+	wp_safe_redirect( admin_url( 'admin.php?page=' . SIKORIX_IUM_PAGE_SLUG ) );
+	exit;
+}
 
 /**
  * Enqueue inline admin assets on the settings screen only.
@@ -106,7 +146,7 @@ add_action( 'admin_menu', 'sikorix_ium_add_settings_page' );
  * @param string $hook_suffix Current admin page hook suffix.
  */
 function sikorix_ium_enqueue_admin_assets( $hook_suffix ) {
-	if ( 'settings_page_sikorix-image-upload-manager' !== $hook_suffix ) {
+	if ( SIKORIX_IUM_PAGE_HOOK !== $hook_suffix ) {
 		return;
 	}
 
@@ -145,10 +185,10 @@ function sikorix_ium_get_admin_settings_styles() {
 			font-size: 14px;
 			line-height: 1.4;
 		}
-		body.settings_page_sikorix-image-upload-manager .wrap > .notice {
+		body.sikorix_page_sikorix-image-upload-manager .wrap > .notice {
 			margin: 8px 0 12px;
 		}
-		body.settings_page_sikorix-image-upload-manager .wrap > form {
+		body.sikorix_page_sikorix-image-upload-manager .wrap > form {
 			margin-top: 12px;
 		}
 		.sikorix-ium-control-label {
@@ -443,7 +483,7 @@ function sikorix_ium_is_settings_screen() {
 
 	$screen = get_current_screen();
 
-	return ( $screen && 'settings_page_sikorix-image-upload-manager' === $screen->id );
+	return ( $screen && SIKORIX_IUM_PAGE_HOOK === $screen->id );
 }
 
 /**

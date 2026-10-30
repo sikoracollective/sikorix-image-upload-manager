@@ -12,7 +12,7 @@ WordPress's default may not match your site. Photography and portfolio sites oft
 
 ### What the plugin does
 
-It adds **Settings → Sikorix Image Upload Manager** with two sections:
+It adds **Sikorix → Image Upload Manager** with two sections:
 
 - **JPEG Quality** — quality for generated JPEG images. Affects JPEG (.jpg, .jpeg) only.
 - **WordPress Editor Quality** — quality when WordPress's image editor saves images. Affects JPEG, WebP, AVIF (WordPress 6.5+ when your server supports it), and PNG. PNG is lossless, so the quality value has little or no visual effect.
@@ -32,7 +32,7 @@ Your settings apply only to images generated or re-saved after you save them. Ex
 
 1. Upload the `sikorix-image-upload-manager` folder to `/wp-content/plugins/`, or install the zip via **Plugins → Add New → Upload Plugin**.
 2. Activate **Sikorix Image Upload Manager** on the **Plugins** screen.
-3. Open **Settings → Sikorix Image Upload Manager** and set your quality and filter priority values.
+3. Open **Sikorix → Image Upload Manager** and set your quality and filter priority values.
 
 ## Frequently Asked Questions
 
@@ -55,6 +55,10 @@ No. Only new or re-saved generated images use the new settings.
 
 ## Changelog
 
+### 3.1.2
+
+- Moved settings to **Sikorix → Image Upload Manager**.
+
 ### 3.1.1
 
 - Settings copy and layout: file-type notes in section descriptions; WordPress defaults beside quality and priority inputs.
@@ -73,6 +77,10 @@ No. Only new or re-saved generated images use the new settings.
 
 ## Upgrade Notice
 
+### 3.1.2
+
+Settings moved under the Sikorix admin menu.
+
 ### 3.1.1
 
 Settings screen text and layout refinements.
@@ -83,7 +91,7 @@ Renamed to Sikorix Image Upload Manager. Install as a new plugin slug; previous 
 
 ### 3.0.0
 
-New settings screen for JPEG and editor quality. Review **Settings → Sikorix Image Upload Manager** after upgrading.
+New settings screen for JPEG and editor quality. Review **Sikorix → Image Upload Manager** after upgrading.
 
 ## License
 
